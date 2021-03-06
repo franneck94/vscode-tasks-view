@@ -3,6 +3,8 @@
   "displayName": "vscode-tasks-view",
   "description": "",
   "version": "0.0.1",
+  "repository": "https://github.com/franneck94/vscode-tasks-view",
+  "publisher": "franneck94",
   "engines": {
     "vscode": "^1.53.0"
   },
