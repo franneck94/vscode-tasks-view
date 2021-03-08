@@ -4,15 +4,23 @@ import { TasksRepository } from './tasksRepository';
 
 export class TasksProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
-    _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem | undefined> = new vscode.EventEmitter<vscode.TreeItem | undefined>();
-    readonly onDidChangeTreeData: vscode.Event<vscode.TreeItem | undefined> = this._onDidChangeTreeData.event;
+    public _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem | null> = new vscode
+        .EventEmitter<vscode.TreeItem | null>();
+    readonly onDidChangeTreeData: vscode.Event<vscode.TreeItem | null> = this
+      ._onDidChangeTreeData.event;
 
-    constructor(private _tasksRepository: TasksRepository) {
+    constructor(public tasksRepository: TasksRepository) {
+    }
+  
+    refresh(): void {
+        // this.getChildren();
+        this.onDidChangeTreeData.fire();
+        this.getChildren();
     }
 
     getChildren(element?: vscode.TreeItem | undefined): vscode.ProviderResult<vscode.TreeItem[]> {
-        if (element === undefined && this._tasksRepository.tasks.size > 0) {
-            let tasksArray =  Array.from(this._tasksRepository.tasks);
+        if (element === undefined && this.tasksRepository.tasks.length > 0) {
+            let tasksArray =  Array.from(this.tasksRepository.tasks);
             tasksArray.forEach(task => {
                 task.collapsibleState = vscode.TreeItemCollapsibleState.None;
             });

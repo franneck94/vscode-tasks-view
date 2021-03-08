@@ -3,14 +3,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TasksProvider = void 0;
 const vscode = require("vscode");
 class TasksProvider {
-    constructor(_tasksRepository) {
-        this._tasksRepository = _tasksRepository;
-        this._onDidChangeTreeData = new vscode.EventEmitter();
-        this.onDidChangeTreeData = this._onDidChangeTreeData.event;
+    constructor(tasksRepository) {
+        this.tasksRepository = tasksRepository;
+        this._onDidChangeTreeData = new vscode
+            .EventEmitter();
+        this.onDidChangeTreeData = this
+            ._onDidChangeTreeData.event;
+    }
+    refresh() {
+        // this.getChildren();
+        this.onDidChangeTreeData.fire();
+        this.getChildren();
     }
     getChildren(element) {
-        if (element === undefined && this._tasksRepository.tasks.size > 0) {
-            let tasksArray = Array.from(this._tasksRepository.tasks);
+        if (element === undefined && this.tasksRepository.tasks.length > 0) {
+            let tasksArray = Array.from(this.tasksRepository.tasks);
             tasksArray.forEach(task => {
                 task.collapsibleState = vscode.TreeItemCollapsibleState.None;
             });

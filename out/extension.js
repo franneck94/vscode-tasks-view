@@ -6,11 +6,12 @@ const tasksView_1 = require("./tasksView");
 const tasksRepository_1 = require("./tasksRepository");
 const tasksProvider_1 = require("./tasksProvider");
 function activate(context) {
-    if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length > 1) {
+    const workspace = vscode.workspace.workspaceFolders;
+    if (!workspace || workspace.length > 1) {
         ;
     }
     else {
-        initWorkspace(context, vscode.workspace.workspaceFolders[0].uri);
+        initWorkspace(context, workspace[0].uri);
     }
 }
 exports.activate = activate;

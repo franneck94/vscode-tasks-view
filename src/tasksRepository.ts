@@ -7,11 +7,15 @@ import { pathExists } from './utils';
 
 export class TasksRepository {
 
-    private tasksFile: string = "";
-    tasks: Set<Task> = new Set();
+    public tasksFile: string;
+    public tasks: Array<Task> = new Array();
 
     constructor(private workspaceRoot: vscode.Uri) {
-        this.tasksFile = path.join(workspaceRoot.fsPath, '.vscode', 'tasks.json');
+        this.tasksFile = path.join(
+            this.workspaceRoot.fsPath,
+            '.vscode',
+            'tasks.json'
+        );
         if (!pathExists(this.tasksFile)) {
             return;
         }
@@ -19,29 +23,45 @@ export class TasksRepository {
     }
 
     read() {
-        this.tasks.clear();
+        this.tasks = [];
         if (!pathExists(this.tasksFile)) {
             return;
         }
 
         let configJson;
         try {
-            configJson = JSON.parse(fs.readFileSync(this.tasksFile, 'utf-8'));
+            const fileContent = fs.readFileSync(this.tasksFile, 'utf-8');
+            configJson = JSON.parse(fileContent);
         } catch (err) {
-            vscode.window.showErrorMessage('The settings.json file cannot be read!');
+            vscode.window.showErrorMessage('Error while reading tasks.json.');
             return;
         }
 
         if (!configJson.tasks) { return; }
 
         for (let taskJson of configJson.tasks) {
-            if (taskJson.type !== 'shell') { return; }
-            const task = new Task(taskJson.label, taskJson.args, taskJson.command, taskJson.type);
-            this.tasks.add(task);
+            if (taskJson.type !== 'shell') {
+                continue;
+            }
+            if (taskJson.options !== undefined) {
+                if (taskJson.options.hide === true) {
+                    continue;
+                }
+            }
+
+            const task = new Task(
+                taskJson.label,
+                taskJson.args,
+                taskJson.command,
+                taskJson.type
+            );
+            this.tasks.push(task);
         };
     }
 
     getTaskByLabel(label: string): Task | undefined {
-        return Array.from(this.tasks).find(task => task.label === label);
+        return Array.from(this.tasks).find(
+            task => task.label === label
+        );
     }
 }

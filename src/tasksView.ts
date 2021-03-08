@@ -5,17 +5,22 @@ import { TasksProvider } from './tasksProvider';
 import { Task } from './tasks';
 
 export class TaskView {
-    constructor(private tasksRepository: TasksRepository,
-                private tasksProvider: TasksProvider) {
+    constructor(public tasksRepository: TasksRepository,
+                public tasksProvider: TasksProvider) {
+        let filePath = this.tasksProvider.tasksRepository.tasksFile;
+        let fileWatcher = vscode.workspace.createFileSystemWatcher(filePath);
+        fileWatcher.onDidChange(() => {
+            this.refreshTasks();
+        });
     }
 
-    refreshTasks() {
+    refreshTasks(): void {
         this.tasksRepository.read();
-        this.tasksProvider._onDidChangeTreeData.fire({});
+        this.tasksProvider._onDidChangeTreeData.fire();
     }
 
     runTask(element: Task) {
-        const shellCommand = `${element._command} ${element._args.join(' ')}`;
+        const shellCommand = `${element.command} ${element.args.join(' ')}`;
 
         const task = new vscode.Task(
             {

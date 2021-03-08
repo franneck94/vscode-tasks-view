@@ -9,25 +9,25 @@ const utils_1 = require("./utils");
 class TasksRepository {
     constructor(workspaceRoot) {
         this.workspaceRoot = workspaceRoot;
-        this.tasksFile = "";
-        this.tasks = new Set();
-        this.tasksFile = path.join(workspaceRoot.fsPath, '.vscode', 'tasks.json');
+        this.tasks = new Array();
+        this.tasksFile = path.join(this.workspaceRoot.fsPath, '.vscode', 'tasks.json');
         if (!utils_1.pathExists(this.tasksFile)) {
             return;
         }
         this.read();
     }
     read() {
-        this.tasks.clear();
+        this.tasks = [];
         if (!utils_1.pathExists(this.tasksFile)) {
             return;
         }
         let configJson;
         try {
-            configJson = JSON.parse(fs.readFileSync(this.tasksFile, 'utf-8'));
+            const fileContent = fs.readFileSync(this.tasksFile, 'utf-8');
+            configJson = JSON.parse(fileContent);
         }
         catch (err) {
-            vscode.window.showErrorMessage('The settings.json file cannot be read!');
+            vscode.window.showErrorMessage('Error while reading tasks.json.');
             return;
         }
         if (!configJson.tasks) {
@@ -35,10 +35,15 @@ class TasksRepository {
         }
         for (let taskJson of configJson.tasks) {
             if (taskJson.type !== 'shell') {
-                return;
+                continue;
+            }
+            if (taskJson.options !== undefined) {
+                if (taskJson.options.hide === true) {
+                    continue;
+                }
             }
             const task = new tasks_1.Task(taskJson.label, taskJson.args, taskJson.command, taskJson.type);
-            this.tasks.add(task);
+            this.tasks.push(task);
         }
         ;
     }

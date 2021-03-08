@@ -6,10 +6,11 @@ import { TasksProvider } from './tasksProvider';
 import { Task } from './tasks';
 
 export function activate(context: vscode.ExtensionContext) {
-    if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length > 1) {
+    const workspace = vscode.workspace.workspaceFolders;
+    if (!workspace || workspace.length > 1) {
         ;
     } else {
-        initWorkspace(context, vscode.workspace.workspaceFolders[0].uri);
+        initWorkspace(context, workspace[0].uri);
     }
 }
 

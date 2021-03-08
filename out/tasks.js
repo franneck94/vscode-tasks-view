@@ -4,16 +4,16 @@ exports.Task = void 0;
 const vscode = require("vscode");
 const vscode_1 = require("vscode");
 class Task extends vscode.TreeItem {
-    constructor(_label, _args, _command, _type) {
-        super(_label, vscode_1.TreeItemCollapsibleState.Collapsed);
-        this._label = _label;
-        this._args = _args;
-        this._command = _command;
-        this._type = _type;
-        this._label = _label;
-        this._args = _args;
-        this._command = _command;
-        this._type = _type;
+    constructor(label, args, command, type) {
+        super(label, vscode_1.TreeItemCollapsibleState.Collapsed);
+        this.label = label;
+        this.args = args;
+        this.command = command;
+        this.type = type;
+        this.label = label;
+        this.args = args;
+        this.command = command;
+        this.type = type;
     }
 }
 exports.Task = Task;
