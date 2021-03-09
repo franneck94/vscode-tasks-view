@@ -2,29 +2,30 @@
   "name": "vscode-tasks-view",
   "displayName": "vscode-tasks-view",
   "description": "View for your tasks from the tasks.json file.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "franneck94",
   "icon": "icon.png",
   "galleryBanner": {
-    "color": "#222222",
+    "color": "#9c9c9c",
     "theme": "dark"
   },
   "engines": {
     "vscode": "^1.53.0"
   },
   "categories": [
+    "Programming Languages",
     "Other"
   ],
   "tags": [
     "execute",
     "tasks",
-    "list",
     "view"
   ],
   "repository": {
-    "url": "https://github.com/franneck94/vscode-tasks-view"
+    "type": "git",
+    "url": "https://github.com/franneck94/vscode-tasks-view.git"
   },
-  "homepage": "https://github.com/franneck94/vscode-tasks-view",
+  "homepage": "https://github.com/franneck94/vscode-tasks-view/README.md",
   "bugs": {
     "url": "https://github.com/franneck94/vscode-tasks-view/issues"
   },
