@@ -4,7 +4,7 @@
   "description": "View for your tasks from the tasks.json file.",
   "version": "0.1.0",
   "publisher": "franneck94",
-  "icon": "ressources/icon.png",
+  "icon": "icon.png",
   "galleryBanner": {
     "color": "#222222",
     "theme": "dark"

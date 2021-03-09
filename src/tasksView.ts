@@ -16,7 +16,7 @@ export class TaskView {
 
     refreshTasks(): void {
         this.tasksRepository.read();
-        this.tasksProvider._onDidChangeTreeData.fire();
+        this.tasksProvider._onDidChangeTreeData.fire({});
     }
 
     runTask(element: Task) {

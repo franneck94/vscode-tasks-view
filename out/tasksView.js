@@ -14,7 +14,7 @@ class TaskView {
     }
     refreshTasks() {
         this.tasksRepository.read();
-        this.tasksProvider._onDidChangeTreeData.fire();
+        this.tasksProvider._onDidChangeTreeData.fire({});
     }
     runTask(element) {
         const shellCommand = `${element._command} ${element._args.join(' ')}`;
