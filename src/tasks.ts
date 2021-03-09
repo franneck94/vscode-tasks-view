@@ -4,15 +4,15 @@ import { TreeItemCollapsibleState } from 'vscode';
 
 export class Task extends vscode.TreeItem {
     constructor(
-        public label: string,
-        public args: string[],
-        public command: string,
-        public type: string,
+        public _label: string,
+        public _args: string[],
+        public _command: string,
+        public _type: string,
     ) {
-        super(label, TreeItemCollapsibleState.Collapsed);
-        this.label = label;
-        this.args = args;
-        this.command = command;
-        this.type = type;
+        super(_label, TreeItemCollapsibleState.Collapsed);
+        this._label = _label;
+        this._args = _args;
+        this._command = _command;
+        this._type = _type;
     }
 }

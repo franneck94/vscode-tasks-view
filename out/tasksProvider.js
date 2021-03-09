@@ -11,8 +11,6 @@ class TasksProvider {
             ._onDidChangeTreeData.event;
     }
     refresh() {
-        // this.getChildren();
-        this.onDidChangeTreeData.fire();
         this.getChildren();
     }
     getChildren(element) {

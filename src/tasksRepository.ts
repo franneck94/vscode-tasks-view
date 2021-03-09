@@ -61,7 +61,7 @@ export class TasksRepository {
 
     getTaskByLabel(label: string): Task | undefined {
         return Array.from(this.tasks).find(
-            task => task.label === label
+            task => task._label === label
         );
     }
 }

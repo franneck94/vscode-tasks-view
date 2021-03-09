@@ -16,18 +16,18 @@ export class TaskView {
 
     refreshTasks(): void {
         this.tasksRepository.read();
-        this.tasksProvider._onDidChangeTreeData.fire();
+        this.tasksProvider._onDidChangeTreeData.fire({});
     }
 
     runTask(element: Task) {
-        const shellCommand = `${element.command} ${element.args.join(' ')}`;
+        const shellCommand = `${element._command} ${element._args.join(' ')}`;
 
         const task = new vscode.Task(
             {
                 type: 'shell',
-                task: element.label
+                task: element._label
             },
-            `running task: ${element.label}`,
+            `running task: ${element._label}`,
             'make',
             new vscode.ShellExecution(shellCommand)
         );

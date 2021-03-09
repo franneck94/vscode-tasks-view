@@ -11,10 +11,8 @@ export class TasksProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     constructor(public tasksRepository: TasksRepository) {
     }
-  
-    refresh(): void {
-        // this.getChildren();
-        this.onDidChangeTreeData.fire();
+
+    refresh() {
         this.getChildren();
     }
 

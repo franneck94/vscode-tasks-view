@@ -48,7 +48,7 @@ class TasksRepository {
         ;
     }
     getTaskByLabel(label) {
-        return Array.from(this.tasks).find(task => task.label === label);
+        return Array.from(this.tasks).find(task => task._label === label);
     }
 }
 exports.TasksRepository = TasksRepository;

@@ -34,4 +34,3 @@ function initWorkspace(context: vscode.ExtensionContext, workspaceUri: vscode.Ur
     context.subscriptions.push(commandRefreshTasks);
     context.subscriptions.push(commandRunTask);
 }
-

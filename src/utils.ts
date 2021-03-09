@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+
 import { env } from 'vscode';
 
 export function formatDate(date: Date): string {
