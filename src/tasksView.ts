@@ -14,7 +14,7 @@ export class TaskView {
         });
     }
 
-    refreshTasks(): void {
+    refreshTasks() {
         this.tasksRepository.read();
         this.tasksProvider._onDidChangeTreeData.fire({});
     }
