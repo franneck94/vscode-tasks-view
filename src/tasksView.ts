@@ -14,12 +14,12 @@ export class TaskView {
         });
     }
 
-    refreshTasks(): void {
+    public refreshTasks(): any {
         this.tasksRepository.read();
-        this.tasksProvider._onDidChangeTreeData.fire({});
+        this.tasksProvider.refresh();
     }
 
-    runTask(element: Task) {
+    public runTask(element: Task) {
         const shellCommand = `${element._command} ${element._args.join(' ')}`;
 
         const task = new vscode.Task(
