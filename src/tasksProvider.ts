@@ -4,20 +4,17 @@ import { TasksRepository } from './tasksRepository';
 
 export class TasksProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
-    public _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem | null> = new vscode
-        .EventEmitter<vscode.TreeItem | null>();
-    readonly onDidChangeTreeData: vscode.Event<vscode.TreeItem | null> = this
-      ._onDidChangeTreeData.event;
+	private _onDidChangeTreeData: vscode.EventEmitter<any> = new vscode.EventEmitter<any>();
+	readonly onDidChangeTreeData: vscode.Event<any> = this._onDidChangeTreeData.event;
 
     constructor(public tasksRepository: TasksRepository) {
     }
 
-    refresh(): void {
-        this.onDidChangeTreeData.fire();
-        this.getChildren();
+    public refresh(): any {
+        this._onDidChangeTreeData.fire(undefined);
     }
 
-    getChildren(element?: vscode.TreeItem | undefined): vscode.ProviderResult<vscode.TreeItem[]> {
+    public getChildren(element?: vscode.TreeItem | undefined): vscode.ProviderResult<vscode.TreeItem[]> {
         if (element === undefined && this.tasksRepository.tasks.length > 0) {
             let tasksArray =  Array.from(this.tasksRepository.tasks);
             tasksArray.forEach(task => {
@@ -31,7 +28,7 @@ export class TasksProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
         }
     }
 
-    getTreeItem(element: vscode.TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
+    public getTreeItem(element: vscode.TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
         return element;
     }
 }

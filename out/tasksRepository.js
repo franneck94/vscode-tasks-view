@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TasksRepository = void 0;
 const fs = require("fs");
 const path = require("path");
-const vscode = require("vscode");
 const tasks_1 = require("./tasks");
 const utils_1 = require("./utils");
 class TasksRepository {
@@ -27,7 +26,6 @@ class TasksRepository {
             configJson = JSON.parse(fileContent);
         }
         catch (err) {
-            vscode.window.showErrorMessage('Error while reading tasks.json.');
             return;
         }
         if (!configJson.tasks) {

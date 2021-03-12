@@ -33,7 +33,6 @@ export class TasksRepository {
             const fileContent = fs.readFileSync(this.tasksFile, 'utf-8');
             configJson = JSON.parse(fileContent);
         } catch (err) {
-            vscode.window.showErrorMessage('Error while reading tasks.json.');
             return;
         }
 

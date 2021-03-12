@@ -5,14 +5,11 @@ const vscode = require("vscode");
 class TasksProvider {
     constructor(tasksRepository) {
         this.tasksRepository = tasksRepository;
-        this._onDidChangeTreeData = new vscode
-            .EventEmitter();
-        this.onDidChangeTreeData = this
-            ._onDidChangeTreeData.event;
+        this._onDidChangeTreeData = new vscode.EventEmitter();
+        this.onDidChangeTreeData = this._onDidChangeTreeData.event;
     }
     refresh() {
-        this.onDidChangeTreeData.fire();
-        this.getChildren();
+        this._onDidChangeTreeData.fire(undefined);
     }
     getChildren(element) {
         if (element === undefined && this.tasksRepository.tasks.length > 0) {
