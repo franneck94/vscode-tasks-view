@@ -2,7 +2,7 @@
   "name": "vscode-tasks-view",
   "displayName": "vscode-tasks-view",
   "description": "View for your tasks from the tasks.json file.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "franneck94",
   "icon": "icon.png",
   "galleryBanner": {
@@ -37,6 +37,7 @@
     "viewsContainers": {
       "activitybar": [
         {
+          "when": "yourCMD",
           "id": "TasksExplorer",
           "title": "TasksExplorer",
           "icon": "resources/icon.svg"
@@ -48,7 +49,8 @@
         {
           "id": "TasksView",
           "name": "TasksView",
-          "icon": "resources/dep.svg"
+          "icon": "resources/dep.svg",
+          "when": "tasksView:showView"
         }
       ]
     },
@@ -59,12 +61,12 @@
           "group": "navigation"
         }
       ],
-			"view/item/context": [
-				{
-					"command": "TasksView.runTask",
-					"group": "inline"
-				}
-			]
+      "view/item/context": [
+        {
+          "command": "TasksView.runTask",
+          "group": "inline"
+        }
+      ]
     },
     "commands": [
       {

@@ -8,3 +8,4 @@ All notable changes to the "vscode-tasks-view" extension will be documented in t
 - 0.1.0 First official release
 - 0.1.1 Fixed problems with images in README.md
 - 0.1.2 Fixed issues with refreshing tasks
+- 0.1.3 Fixed issue when no tasks.json file is present
