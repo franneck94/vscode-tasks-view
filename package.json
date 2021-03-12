@@ -29,7 +29,9 @@
   "bugs": {
     "url": "https://github.com/franneck94/vscode-tasks-view/issues"
   },
-  "activationEvents": ["*"],
+  "activationEvents": [
+    "workspaceContains:.vscode/tasks.json"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "viewsContainers": {

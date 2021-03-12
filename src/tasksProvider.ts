@@ -13,7 +13,6 @@ export class TasksProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     }
 
     refresh(): void {
-        // @ts-ignore
         this.onDidChangeTreeData.fire();
         this.getChildren();
     }

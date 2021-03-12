@@ -7,6 +7,7 @@ import { Task } from './tasks';
 
 export function activate(context: vscode.ExtensionContext) {
     const workspace = vscode.workspace.workspaceFolders;
+
     if (!workspace || workspace.length > 1) {
         ;
     } else {
